@@ -1,1 +1,5 @@
 Please see http://www.derivante.com/2010/04/23/extensible-php-caching-library/ for directions on use.
+
+NOTE: The SQLCache currently is set up to use database abstraction for Drupal. If you don't use drupal
+please modify the calls for your use.
+
