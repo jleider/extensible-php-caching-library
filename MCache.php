@@ -48,6 +48,13 @@ class MCache extends Cache {
   }
 
   /**
+   * Make sure we call Cache->__destruct() first so variables arent unset too early
+   */
+  public function __destruct() {
+    parent::__destruct();
+  }
+
+  /**
    * Set the data into Memcached.
    */
   protected function _setCache() {
@@ -65,7 +72,10 @@ class MCache extends Cache {
    * Fetch the cached data from Memcached.
    */
   protected function _getCache() {
-    return $this->memcache->get($this->_getKey());
+    $this->data = $this->memcache->get($this->_getKey());
+    if(!$this->data) {
+      $this->expiration = 0;
+    }
   }
 
 
@@ -81,6 +91,6 @@ class MCache extends Cache {
 }
 
 
-class MemCacheException extends CacheException {}
+class MCacheException extends CacheException {}
 
 
