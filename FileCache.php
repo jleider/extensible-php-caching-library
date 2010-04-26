@@ -27,7 +27,7 @@ require_once('Cache.php');
 
 
 /**
- * MCache is a Memcached specific extension of the Cache class.
+ * FileCache is filesystem specific extension of the Cache class.
  *
  * @author jleider
  */
@@ -53,7 +53,7 @@ class FileCache extends Cache {
 
 
   /**
-   * Set the data into Memcached.
+   * Save data to file.
    */
   protected function _setCache() {
     $fp = fopen($this->cacheDir.'/'.$this->_getKey().'.cache', 'w');
@@ -63,14 +63,14 @@ class FileCache extends Cache {
   }
 
   /**
-   * Delete the data from Memcached.
+   * Delete the file
    */
   protected function _deleteCache() {
     @unlink($this->cacheDir.'/'.$this->_getKey().'.cache');
   }
 
   /**
-   * Fetch the cached data from Memcached.
+   * Fetch the cached data from file.
    */
   protected function _getCache() {
     $file = @file_get_contents($this->cacheDir.'/'.$this->_getKey().'.cache');
