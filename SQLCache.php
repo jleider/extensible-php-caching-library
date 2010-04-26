@@ -34,6 +34,13 @@ require_once('Cache.php');
 class SQLCache extends Cache {
 
   /**
+   * Make sure we call Cache->__destruct() first so variables arent unset too early
+   */
+  public function __destruct() {
+    parent::__destruct();
+  }
+
+  /**
    * Set the data into the SQL cache.
    */
   protected function _setCache() {
