@@ -97,7 +97,7 @@ abstract class Cache {
    * Set the cache. This is the suggested way of setting the cached data.
    *
    * @param mixed $data
-   * @param mixed $expriation unix timestamp or formatted date string
+   * @param mixed $expiration unix timestamp or formatted date string
    * @param boolean $cacheNow (Optional) Set to true to force a cache write else defaults to write on __destruct().
    * @see setExpiration() for accepted values
    */
@@ -157,10 +157,10 @@ abstract class Cache {
   /**
    * Set the $this->expiration time to a future unix timestamp, defaults to 1 day if no expiration given.
    *
-   * @param mixed $expriation unix timestamp or formatted date string
+   * @param mixed $expiration unix timestamp or formatted date string
    * @see strtotime() for accepted string inputs.
    */
-  public function setExpiration($expriation) {
+  public function setExpiration($expiration) {
     if(is_numeric($expiration) && $expiration > $this->time) {
       $this->expiration = $expiration;
     } else {
